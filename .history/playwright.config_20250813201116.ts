@@ -8,7 +8,7 @@ export default defineConfig({
   use: {
     baseURL: "http://localhost:3000",
     trace: "on",
-    headless: true, // Set to true if you want to run tests in headless mode
+    headless: false, // Set to true if you want to run tests in headless mode
   },
 
   /* Configure projects for major browsers */

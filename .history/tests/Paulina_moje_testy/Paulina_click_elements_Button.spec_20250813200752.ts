@@ -1,0 +1,29 @@
+import { expect, test } from "@playwright/test";
+
+let page;
+const labelText = "Some text for label";
+
+test.beforeAll(async ({ browser }) => {
+  const context = await browser.newContext();
+  page = await context.newPage();
+  await page.goto("http://localhost:3000/practice/simple-elements.html");
+});
+
+test("Click on the button on Simple Elements with ID - Practice Page", async () => {
+  //await page.getByTestId("dti-button-element").click();
+  await page.locator('[data-testid="dti-button-element"]').click();
+});
+
+test("Check if text for label is correct", async () => {
+  await expect(page.getByTestId("dti-label-element")).toHaveText(labelText);
+});
+
+test("Check the checkbox", async () => {
+  //await expect(page.getByTestId("dti-checkbox-element")).not.toBeChecked();
+  await page.getByTestId("dti-checkbox-element").click();
+  //await expect(page.getByTestId("dti-checkbox-element")).toBeChecked();
+});
+
+test.afterAll(async () => {
+  await page.close();
+});
